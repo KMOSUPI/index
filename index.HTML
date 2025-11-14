@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karabo Hospital | Quality Healthcare in Pretoria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a5276;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .header-top-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info span {
+            margin-right: 20px;
+        }
+
+        .contact-info i {
+            margin-right: 5px;
+        }
+
+        .emergency {
+            background-color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a.active {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Page Content Styles */
+        .page-content {
+            min-height: calc(100vh - 400px);
+            padding: 60px 0;
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(26, 82, 118, 0.8), rgba(26, 82, 118, 0.8));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .breadcrumb li {
+            margin: 0 5px;
+        }
+
+        .breadcrumb li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb li:not(:last-child)::after {
+            content: '>';
+            margin-left: 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 82, 118, 0.8), rgba(26, 82, 118, 0.8)), url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--dark);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            background-color: var(--primary);
+            color: white;
+            font-size: 2.5rem;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: #f0f7ff;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Departments Section */
+        .departments {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .department-card {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .department-card:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .department-card:hover i {
+            color: white;
+        }
+
+        .department-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Doctors Section */
+        .doctors {
+            padding: 80px 0;
+            background-color: #f0f7ff;
+        }
+
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .doctor-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .doctor-image {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+
+        .doctor-info {
+            padding: 20px;
+        }
+
+        .doctor-info h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .doctor-info .specialty {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .contact-detail i {
+            color: var(--secondary);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-top-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info span {
+                display: block;
+                margin: 5px 0;
+            }
+            
+            .emergency {
+                margin-top: 10px;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Page-specific styles */
+        .page-container {
+            display: none;
+        }
+        
+        .page-container.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container header-top-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> +27 12 345 6789</span>
+                    <span><i class="fas fa-envelope"></i> info@karabohospital.co.za</span>
+                </div>
+                <div class="emergency">
+                    <i class="fas fa-ambulance"></i> EMERGENCY: 10111
+                </div>
+            </div>
+        </div>
+        <div class="container main-header">
+            <div class="logo">
+                <div class="logo-placeholder" style="width: 60px; height: 60px; background-color: var(--primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border-radius: 5px;">KH</div>
+                <div class="logo-text">
+                    <h1>Karabo Hospital</h1>
+                    <p>Excellence in Healthcare</p>
+                </div>
+            </div>
+            <nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
+                    <li><a href="#" class="nav-link" data-page="services">Services</a></li>
+                    <li><a href="#" class="nav-link" data-page="doctors">Our Doctors</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page-container active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h2>Your Health, Our Priority</h2>
+                <p>Karabo Hospital provides comprehensive healthcare services with compassion, excellence, and innovation in Pretoria, South Africa.</p>
+                <a href="#" class="btn" data-page="contact">Book an Appointment</a>
+                <a href="#" class="btn btn-secondary" data-page="services">Our Services</a>
+            </div>
+        </section>
+
+        <!-- Services Preview Section -->
+        <section class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Medical Services</h2>
+                    <p>We offer a wide range of specialized medical services to meet all your healthcare needs.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Cardiology</h3>
+                            <p>Comprehensive heart care with state-of-the-art diagnostic and treatment facilities for all cardiac conditions.</p>
+                            <a href="#" class="btn" data-page="services" style="margin-top: 15px; padding: 8px 15px; font-size: 0.9rem;">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Maternity & Pediatrics</h3>
+                            <p>Specialized care for mothers and children, from prenatal services to pediatric healthcare.</p>
+                            <a href="#" class="btn" data-page="services" style="margin-top: 15px; padding: 8px 15px; font-size: 0.9rem;">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-bone"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Orthopedics</h3>
+                            <p>Expert diagnosis and treatment for bone, joint, and muscle conditions with advanced surgical options.</p>
+                            <a href="#" class="btn" data-page="services" style="margin-top: 15px; padding: 8px 15px; font-size: 0.9rem;">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#" class="btn" data-page="services">View All Services</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Preview Section -->
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>About Karabo Hospital</h2>
+                        <p>Established in 1995, Karabo Hospital has been at the forefront of healthcare delivery in Pretoria and surrounding areas. Our commitment to excellence has made us a trusted name in medical care.</p>
+                        <p>We combine state-of-the-art technology with compassionate care to provide comprehensive medical services to our diverse community.</p>
+                        <a href="#" class="btn" data-page="about">Learn More About Us</a>
+                    </div>
+                    <div class="about-image">
+                        <div style="width: 100%; height: 400px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #777;">Hospital Image</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="page-container">
+        <div class="page-header">
+            <div class="container">
+                <h1>About Karabo Hospital</h1>
+                <ul class="breadcrumb">
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li>About Us</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Our Story</h2>
+                        <p>Karabo Hospital was founded in 1995 with a vision to provide world-class healthcare services to the people of Pretoria and surrounding communities. Over the years, we have grown from a small clinic to a full-service hospital with state-of-the-art facilities and a team of dedicated healthcare professionals.</p>
+                        
+                        <h2>Our Mission</h2>
+                        <p>To provide compassionate, high-quality healthcare services that meet the needs of our diverse community through clinical excellence, innovative technology, and a commitment to patient-centered care.</p>
+                        
+                        <h2>Our Values</h2>
+                        <ul style="margin-left: 20px; margin-bottom: 20px;">
+                            <li><strong>Compassion:</strong> We treat every patient with empathy, dignity, and respect.</li>
+                            <li><strong>Excellence:</strong> We strive for the highest standards in all aspects of patient care.</li>
+                            <li><strong>Innovation:</strong> We embrace new technologies and treatments to improve patient outcomes.</li>
+                            <li><strong>Integrity:</strong> We maintain the highest ethical standards in all our interactions.</li>
+                            <li><strong>Community:</strong> We are committed to serving and improving the health of our community.</li>
+                        </ul>
+                        
+                        <h2>Our Facilities</h2>
+                        <p>Karabo Hospital features modern medical facilities including:</p>
+                        <ul style="margin-left: 20px; margin-bottom: 20px;">
+                            <li>24/7 Emergency Department</li>
+                            <li>Advanced Surgical Suites</li>
+                            <li>Intensive Care Unit (ICU)</li>
+                            <li>Maternity and Neonatal Care</li>
+                            <li>Diagnostic Imaging Center</li>
+                            <li>Physical Therapy and Rehabilitation</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <div style="width: 100%; height: 600px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #777;">Hospital Facility Image</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page-container">
+        <div class="page-header">
+            <div class="container">
+                <h1>Our Services</h1>
+                <ul class="breadcrumb">
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li>Services</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="container">
+                <div class="services">
+                    <div class="section-title">
+                        <h2>Comprehensive Medical Services</h2>
+                        <p>At Karabo Hospital, we offer a wide range of specialized medical services provided by experienced healthcare professionals.</p>
+                    </div>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Cardiology</h3>
+                                <p>Comprehensive heart care with state-of-the-art diagnostic and treatment facilities for all cardiac conditions.</p>
+                                <ul>
+                                    <li>Cardiac Catheterization</li>
+                                    <li>Echocardiography</li>
+                                    <li>Cardiac Rehabilitation</li>
+                                    <li>Pacemaker Implantation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-baby"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Maternity & Pediatrics</h3>
+                                <p>Specialized care for mothers and children, from prenatal services to pediatric healthcare.</p>
+                                <ul>
+                                    <li>Prenatal and Postnatal Care</li>
+                                    <li>Labor and Delivery</li>
+                                    <li>Neonatal Intensive Care</li>
+                                    <li>Pediatric Vaccinations</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-bone"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Orthopedics</h3>
+                                <p>Expert diagnosis and treatment for bone, joint, and muscle conditions with advanced surgical options.</p>
+                                <ul>
+                                    <li>Joint Replacement Surgery</li>
+                                    <li>Arthroscopic Procedures</li>
+                                    <li>Fracture Care</li>
+                                    <li>Sports Medicine</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Neurology</h3>
+                                <p>Comprehensive care for disorders of the nervous system with cutting-edge diagnostic technology.</p>
+                                <ul>
+                                    <li>EEG and EMG Testing</li>
+                                    <li>Stroke Treatment</li>
+                                    <li>Epilepsy Management</li>
+                                    <li>Neurological Rehabilitation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Ophthalmology</h3>
+                                <p>Complete eye care services from routine vision checks to complex surgical procedures.</p>
+                                <ul>
+                                    <li>Cataract Surgery</li>
+                                    <li>Glaucoma Treatment</li>
+                                    <li>Retinal Procedures</li>
+                                    <li>Laser Vision Correction</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>General Surgery</h3>
+                                <p>Expert surgical care for a wide range of conditions with minimally invasive techniques.</p>
+                                <ul>
+                                    <li>Laparoscopic Surgery</li>
+                                    <li>Gastrointestinal Procedures</li>
+                                    <li>Hernia Repair</li>
+                                    <li>Thyroid Surgery</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="departments" style="margin-top: 60px;">
+                    <div class="section-title">
+                        <h2>Our Departments</h2>
+                        <p>Explore our specialized medical departments, each equipped with modern facilities and expert staff.</p>
+                    </div>
+                    <div class="departments-grid">
+                        <div class="department-card">
+                            <i class="fas fa-stethoscope"></i>
+                            <h3>Emergency</h3>
+                            <p>24/7 emergency care for critical conditions</p>
+                        </div>
+                        <div class="department-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>ICU</h3>
+                            <p>Intensive care for critically ill patients</p>
+                        </div>
+                        <div class="department-card">
+                            <i class="fas fa-x-ray"></i>
+                            <h3>Radiology</h3>
+                            <p>Advanced imaging and diagnostic services</p>
+                        </div>
+                        <div class="department-card">
+                            <i class="fas fa-flask"></i>
+                            <h3>Laboratory</h3>
+                            <p>Comprehensive testing and analysis</p>
+                        </div>
+                        <div class="department-card">
+                            <i class="fas fa-pills"></i>
+                            <h3>Pharmacy</h3>
+                            <p>Medication dispensing and consultation</p>
+                        </div>
+                        <div class="department-card">
+                            <i class="fas fa-utensils"></i>
+                            <h3>Nutrition</h3>
+                            <p>Dietary planning and nutritional counseling</p>
+                        </div>
+                        <div class="department-card">
+                            <i class="fas fa-wheelchair"></i>
+                            <h3>Physiotherapy</h3>
+                            <p>Rehabilitation and physical therapy services</p>
+                        </div>
+                        <div class="department-card">
+                            <i class="fas fa-teeth"></i>
+                            <h3>Dental</h3>
+                            <p>Oral health and dental care services</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doctors Page -->
+    <div id="doctors" class="page-container">
+        <div class="page-header">
+            <div class="container">
+                <h1>Our Medical Team</h1>
+                <ul class="breadcrumb">
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li>Our Doctors</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="container">
+                <div class="doctors">
+                    <div class="section-title">
+                        <h2>Meet Our Specialists</h2>
+                        <p>Our team of experienced healthcare professionals is dedicated to providing you with the highest quality medical care.</p>
+                    </div>
+                    <div class="doctors-grid">
+                        <div class="doctor-card">
+                            <div class="doctor-image">
+                                Doctor Image
+                            </div>
+                            <div class="doctor-info">
+                                <h3>Dr. Thabo Moloi</h3>
+                                <p class="specialty">Cardiologist</p>
+                                <p>With over 15 years of experience, Dr. Moloi specializes in interventional cardiology and heart disease prevention.</p>
+                            </div>
+                        </div>
+                        <div class="doctor-card">
+                            <div class="doctor-image">
+                                Doctor Image
+                            </div>
+                            <div class="doctor-info">
+                                <h3>Dr. Nomsa Khumalo</h3>
+                                <p class="specialty">Pediatrician</p>
+                                <p>Dr. Khumalo has dedicated her career to children's health, with special interest in neonatal care and development.</p>
+                            </div>
+                        </div>
+                        <div class="doctor-card">
+                            <div class="doctor-image">
+                                Doctor Image
+                            </div>
+                            <div class="doctor-info">
+                                <h3>Dr. James van der Merwe</h3>
+                                <p class="specialty">Orthopedic Surgeon</p>
+                                <p>Specializing in joint replacement and sports injuries, Dr. van der Merwe has performed over 1,000 successful surgeries.</p>
+                            </div>
+                        </div>
+                        <div class="doctor-card">
+                            <div class="doctor-image">
+                                Doctor Image
+                            </div>
+                            <div class="doctor-info">
+                                <h3>Dr. Sarah Petersen</h3>
+                                <p class="specialty">Neurologist</p>
+                                <p>With expertise in stroke treatment and neurological disorders, Dr. Petersen leads our neurology department.</p>
+                            </div>
+                        </div>
+                        <div class="doctor-card">
+                            <div class="doctor-image">
+                                Doctor Image
+                            </div>
+                            <div class="doctor-info">
+                                <h3>Dr. David Okafor</h3>
+                                <p class="specialty">General Surgeon</p>
+                                <p>Dr. Okafor specializes in minimally invasive procedures with a focus on gastrointestinal and abdominal surgery.</p>
+                            </div>
+                        </div>
+                        <div class="doctor-card">
+                            <div class="doctor-image">
+                                Doctor Image
+                            </div>
+                            <div class="doctor-info">
+                                <h3>Dr. Lerato Nkosi</h3>
+                                <p class="specialty">Obstetrician & Gynecologist</p>
+                                <p>Dr. Nkosi provides comprehensive women's health services with special expertise in high-risk pregnancies.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page-container">
+        <div class="page-header">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <ul class="breadcrumb">
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="container">
+                <div class="contact">
+                    <div class="section-title">
+                        <h2>Get In Touch</h2>
+                        <p>We're here to help with all your healthcare needs. Reach out to us with any questions or to schedule an appointment.</p>
+                    </div>
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <h3>Visit Our Hospital</h3>
+                            <div class="contact-details">
+                                <div class="contact-detail">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div>
+                                        <p><strong>Address:</strong></p>
+                                        <p>123 Health Street, Pretoria Central<br>Pretoria, 0001<br>South Africa</p>
+                                    </div>
+                                </div>
+                                <div class="contact-detail">
+                                    <i class="fas fa-phone"></i>
+                                    <div>
+                                        <p><strong>Phone:</strong></p>
+                                        <p>+27 12 345 6789</p>
+                                    </div>
+                                </div>
+                                <div class="contact-detail">
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <p><strong>Email:</strong></p>
+                                        <p>info@karabohospital.co.za</p>
+                                    </div>
+                                </div>
+                                <div class="contact-detail">
+                                    <i class="fas fa-clock"></i>
+                                    <div>
+                                        <p><strong>Operating Hours:</strong></p>
+                                        <p>24/7 Emergency Department<br>Outpatient: Mon-Fri 8:00-17:00<br>Sat 8:00-13:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>Follow Us</h3>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="contact-form">
+                            <h3>Send Us a Message</h3>
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="department">Department</label>
+                                    <select id="department" name="department">
+                                        <option value="">Select a Department</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="pediatrics">Pediatrics</option>
+                                        <option value="orthopedics">Orthopedics</option>
+                                        <option value="neurology">Neurology</option>
+                                        <option value="general">General Inquiry</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" required></textarea>
+                                </div>
+                                <button type="submit" class="btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Karabo Hospital</h3>
+                    <p>Providing exceptional healthcare services to the Pretoria community since 1995. Your health and wellbeing are our top priorities.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="about">About Us</a></li>
+                        <li><a href="#" data-page="services">Services</a></li>
+                        <li><a href="#" data-page="doctors">Our Doctors</a></li>
+                        <li><a href="#" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#" data-page="services">Cardiology</a></li>
+                        <li><a href="#" data-page="services">Maternity Care</a></li>
+                        <li><a href="#" data-page="services">Orthopedics</a></li>
+                        <li><a href="#" data-page="services">Neurology</a></li>
+                        <li><a href="#" data-page="services">Emergency Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health Street, Pretoria</li>
+                        <li><i class="fas fa-phone"></i> +27 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> info@karabohospital.co.za</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Emergency Services</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Karabo Hospital. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+                document.getElementById('main-menu').classList.toggle('show');
+            });
+
+            // Page Navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page-container');
+            
+            function showPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                document.getElementById(pageId).classList.add('active');
+                
+                // Update active nav link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Close mobile menu if open
+                document.getElementById('main-menu').classList.remove('show');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+            
+            // Add click event to all navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+            
+            // Add click event to all buttons with data-page attribute
+            document.querySelectorAll('[data-page]').forEach(button => {
+                if (button.tagName !== 'A' || !button.classList.contains('nav-link')) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const pageId = this.getAttribute('data-page');
+                        showPage(pageId);
+                    });
+                }
+            });
+
+            // Form Submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message. We will get back to you soon!');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>
