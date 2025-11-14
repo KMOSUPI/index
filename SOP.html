@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital SOP Management</title>
+    <style>
+        body {
+            font-family: Calibri, Arial, sans-serif;
+            background-color: #e6f2ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2a5ba0;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        nav {
+            background-color: #1a3c6e;
+            padding: 10px 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .sop-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .sop-card {
+            background-color: #f0f7ff;
+            border: 1px solid #b3d1ff;
+            padding: 15px;
+            cursor: pointer;
+        }
+        
+        .sop-card h3 {
+            margin-top: 0;
+            color: #1a3c6e;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            font-family: Calibri, Arial, sans-serif;
+        }
+        
+        textarea {
+            min-height: 100px;
+        }
+        
+        button {
+            background-color: #2a5ba0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background-color: #1a3c6e;
+        }
+        
+        .file-upload {
+            border: 2px dashed #b3d1ff;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: #1a3c6e;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+        
+        .sop-details {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .sop-details-content {
+            background-color: white;
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 800px;
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        /* Home Page Enhancements */
+        .hero {
+            background: linear-gradient(135deg, #2a5ba0 0%, #1a3c6e 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .hero h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        
+        .cta-button {
+            background-color: #ff6b35;
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            background-color: #e55a2b;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .feature-card h3 {
+            color: #1a3c6e;
+            margin-top: 0;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: #2a5ba0;
+            margin-bottom: 15px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 40px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-item {
+            padding: 10px;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2a5ba0;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            border-left: 4px solid #2a5ba0;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #2a5ba0;
+        }
+        
+        .benefits {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+        
+        .benefits h3 {
+            color: #1a3c6e;
+            text-align: center;
+            margin-top: 0;
+        }
+        
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .benefit-icon {
+            color: #2a5ba0;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .sop-list {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 5px 0;
+            }
+            
+            .features, .stats, .benefits-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Hospital SOP Management System</h1>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#" class="nav-link" data-section="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-section="view">View SOPs</a></li>
+                <li><a href="#" class="nav-link" data-section="upload">Upload SOP</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="home" class="section active">
+            <div class="hero">
+                <h2>Streamline Your Hospital's Standard Operating Procedures</h2>
+                <p>A centralized, secure platform for managing all IT infrastructure SOPs across your healthcare organization</p>
+                <button class="cta-button" onclick="showSection('view')">View Existing SOPs</button>
+                <button class="cta-button" onclick="showSection('upload')">Upload New SOP</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Standard SOPs</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Accessibility</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Compliance Ready</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Security Incidents</span>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Centralized Repository</h3>
+                    <p>All SOPs in one secure location with easy access for authorized staff</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Access Control</h3>
+                    <p>Role-based permissions ensure only authorized personnel can view or modify SOPs</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Quick Deployment</h3>
+                    <p>Upload and distribute new SOPs across your organization in minutes</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Compliance Tracking</h3>
+                    <p>Maintain audit trails and ensure regulatory compliance with POPIA</p>
+                </div>
+            </div>
+            
+            <div class="benefits">
+                <h3>Key Benefits for Your Hospital</h3>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span>Reduce IT downtime by 40% with standardized procedures</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span>Ensure patient data security with consistent protocols</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span>Streamline staff training with accessible documentation</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span>Maintain regulatory compliance effortlessly</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span>Improve incident response times with clear guidelines</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span>Centralize knowledge management across departments</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"This SOP management system has transformed how our hospital handles IT procedures. We've reduced resolution times by 35% and improved compliance across all departments."</p>
+                <p class="testimonial-author">- Dr. Sarah Johnson, IT Director at General Hospital</p>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <h3>Ready to Improve Your Hospital's IT Operations?</h3>
+                <p>Join healthcare organizations that trust our SOP management system</p>
+                <button class="cta-button" onclick="showSection('upload')">Get Started Today</button>
+            </div>
+        </div>
+        
+        <div id="view" class="section">
+            <h2>Standard Operating Procedures</h2>
+            <div class="sop-list" id="sop-list"></div>
+        </div>
+        
+        <div id="upload" class="section">
+            <h2>Upload SOP Document</h2>
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="upload-title">SOP Title</label>
+                    <input type="text" id="upload-title" name="upload-title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="upload-category">Category</label>
+                    <select id="upload-category" name="upload-category" required>
+                        <option value="">Select a category</option>
+                        <option value="system-maintenance">System Maintenance</option>
+                        <option value="data-backup">Data Backup</option>
+                        <option value="inventory-update">Inventory Update</option>
+                        <option value="user-access">User Access and Security</option>
+                        <option value="network-monitoring">Network Monitoring</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="upload-author">Author Name</label>
+                    <input type="text" id="upload-author" name="upload-author" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Upload Document</label>
+                    <div class="file-upload" id="file-upload-area">
+                        <p>Drag and drop your file here or click to select</p>
+                        <p>Supported formats: PDF, DOC, DOCX (Max: 10MB)</p>
+                        <input type="file" id="upload-file" name="upload-file" accept=".pdf,.doc,.docx" style="display: none;">
+                        <button type="button" id="select-file">Select File</button>
+                    </div>
+                    <div id="file-name"></div>
+                </div>
+                
+                <button type="submit">Upload SOP</button>
+                <button type="button" id="cancel-upload">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="sop-details" id="sop-details">
+        <div class="sop-details-content">
+            <span class="close-btn" id="close-details">&times;</span>
+            <h2 id="detail-title"></h2>
+            <div id="detail-meta"></div>
+            <div>
+                <h3>Purpose/Objective</h3>
+                <p id="detail-purpose"></p>
+                
+                <h3>Procedure/Protocol</h3>
+                <pre id="detail-procedure"></pre>
+                
+                <h3>Why (Justification)</h3>
+                <p id="detail-why"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Hospital IT Infrastructure & Network Design | Group 2</p>
+            <p>© 2023 All Rights Reserved | POPIA Compliant | HIPAA Ready</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample SOP data
+        const sampleSOPs = [
+            {
+                id: 1,
+                title: "System Maintenance SOP",
+                purpose: "To ensure all hospital systems (PCs, servers, printers, routers, and Wi-Fi access points) always function and update correctly, and securely.",
+                procedure: "1. IT will perform routine checks for the purposes of cleaning temporary files, checking space on the disk, and updating Windows and antivirus software every Friday afternoon.\n2. To not interrupt hospital operations, servers will be dynamically rebooted from operational off-peak hours (after 10 p.m.).\n3. All hardware devices will check for wear, damage, or overheating at least once a month.\n4. A log of all maintenance activities shall be written or annotated into the System Maintenance Register.\n5. A major incident must also be communicated to the IT Manager immediately to be repaired or scheduled to be repaired within a 48-hour time period.",
+                why: "Regular maintenance prevents breakdowns, improves performance, extends equipment lifespan, and ensures the hospital network runs 24/7 with minimal downtime.",
+                category: "system-maintenance",
+                author: "IT Department",
+                date: "2023-10-15",
+                type: "text"
+            },
+            {
+                id: 2,
+                title: "Data Backup SOP",
+                purpose: "To safeguard the patient records and data of the hospital from unintentional loss, corruption, or a cyberattack.",
+                procedure: "1. Every night at 11:00 PM, automatic backups will occur to both a local backup server and secured cloud storage.\n2. Each morning, IT personnel will verify the completion of the backups via backup logs created by the backup system.\n3. Each Monday, a test restore of files will be undertaken to ensure data integrity.\n4. Access to backup drives will be limited to authorized personnel (IT manager and Database Administrator).\n5. Backup drives will be secured in a locked fireproof cabinet in the server room.",
+                why: "Data is the hospital's most valuable resource. Regular backups guarantee that no patient records or billing data are lost even if systems fail or get attacked by malware.",
+                category: "data-backup",
+                author: "IT Department",
+                date: "2023-10-10",
+                type: "text"
+            },
+            {
+                id: 3,
+                title: "Inventory Update SOP",
+                purpose: "To effectively acknowledge each and every information technology asset in the hospital - to keep a detailed and accurate record and proper management of the hardware and software.",
+                procedure: "1. For each new information technology device (e.g., computer, printer, wireless router), a unique inventory ID tag is assigned.\n2. The device details (serial number, model, location and assigned employee) is entered in the Inventory Management System.\n3. The information technology staff updates the record when equipment is relocated, repaired, or replaced.\n4. A complete physical inventory assessment is completed every 3 months to ensure that records match the physical equipment.\n5. Old and broken devices are disposed of according to the hospital's e-waste policy.",
+                why: "Accurate inventory records help in budgeting, theft prevention, planning upgrades, and ensuring smooth operations.",
+                category: "inventory-update",
+                author: "IT Department",
+                date: "2023-10-05",
+                type: "text"
+            },
+            {
+                id: 4,
+                title: "User Access and Security SOP",
+                purpose: "To protect patient and clinical information so that authorized users only have access.",
+                procedure: "1. An individual username and strong password will be issued to every employee.\n2. Passwords shall be changed every 60 days.\n3. When an employee leaves the hospital, the account shall be deactivated within 24 hours.\n4. Access will be assigned based on roles: (Doctor, Nurse, Receptionist, IT Staff).\n5. Employees are expected to lock computers when not in use and log out after the shift.\n6. Any suspicious activities or unauthorized login attempts must be reported immediately.",
+                why: "Maintaining strict access control prevents data leaks, protects patient privacy, and ensures compliance with POPIA laws.",
+                category: "user-access",
+                author: "IT Department",
+                date: "2023-09-28",
+                type: "text"
+            },
+            {
+                id: 5,
+                title: "Network Monitoring SOP",
+                purpose: "To maintain reliable communication throughout all departments, identify issues early and provide robust network connections.",
+                procedure: "1. Network management software is used to monitor network equipment (switches, routers and access points) on a daily basis.\n2. Alerts are set up for unexpected traffic, delays or failures.\n3. To monitor uptime and speed weekly network performance reports are produced.\n4. Within a day any issues found are fixed.\n5. Logs are kept for six months in a secure location.",
+                why: "Complete access to patient data, billing systems and communication tools needed for hospital operations is ensured by a trustworthy and well watched network.",
+                category: "network-monitoring",
+                author: "IT Department",
+                date: "2023-09-20",
+                type: "text"
+            }
+        ];
+
+        // DOM Elements
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sopListElement = document.getElementById('sop-list');
+        const uploadFormElement = document.getElementById('upload-form');
+        const sopDetailsElement = document.getElementById('sop-details');
+        const closeDetailsButton = document.getElementById('close-details');
+        const fileUploadArea = document.getElementById('file-upload-area');
+        const fileNameElement = document.getElementById('file-name');
+        const fileInput = document.getElementById('upload-file');
+        const selectFileButton = document.getElementById('select-file');
+        const cancelUploadButton = document.getElementById('cancel-upload');
+
+        // Initialize with sample SOPs
+        let sops = JSON.parse(localStorage.getItem('sops')) || sampleSOPs;
+
+        // Navigation
+        function showSection(sectionId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            if (sectionId === 'view') {
+                renderSOPs();
+            }
+        }
+
+        // Set up navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('data-section');
+                showSection(sectionId);
+            });
+        });
+
+        // Function to render SOPs
+        function renderSOPs() {
+            sopListElement.innerHTML = '';
+            
+            if (sops.length === 0) {
+                sopListElement.innerHTML = '<p>No SOPs available. Upload one to get started.</p>';
+                return;
+            }
+            
+            sops.forEach(sop => {
+                const sopCard = document.createElement('div');
+                sopCard.className = 'sop-card';
+                sopCard.innerHTML = `
+                    <h3>${sop.title} ${sop.type === 'file' ? '(Document)' : ''}</h3>
+                    <p><strong>Purpose:</strong> ${sop.purpose.substring(0, 100)}...</p>
+                    <p><strong>Category:</strong> ${formatCategory(sop.category)}</p>
+                    <p><strong>Author:</strong> ${sop.author}</p>
+                    <p><strong>Date:</strong> ${sop.date}</p>
+                `;
+                
+                sopCard.addEventListener('click', () => showSOPDetails(sop));
+                sopListElement.appendChild(sopCard);
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('sops', JSON.stringify(sops));
+        }
+
+        // Function to format category for display
+        function formatCategory(category) {
+            const categoryMap = {
+                'system-maintenance': 'System Maintenance',
+                'data-backup': 'Data Backup',
+                'inventory-update': 'Inventory Update',
+                'user-access': 'User Access and Security',
+                'network-monitoring': 'Network Monitoring',
+                'other': 'Other'
+            };
+            
+            return categoryMap[category] || category;
+        }
+
+        // Function to show SOP details
+        function showSOPDetails(sop) {
+            document.getElementById('detail-title').textContent = sop.title;
+            document.getElementById('detail-meta').innerHTML = `
+                <p><strong>Category:</strong> ${formatCategory(sop.category)}</p>
+                <p><strong>Author:</strong> ${sop.author}</p>
+                <p><strong>Date:</strong> ${sop.date}</p>
+            `;
+            document.getElementById('detail-purpose').textContent = sop.purpose;
+            document.getElementById('detail-procedure').textContent = sop.procedure;
+            document.getElementById('detail-why').textContent = sop.why;
+            
+            sopDetailsElement.style.display = 'block';
+        }
+
+        // Function to handle file upload
+        function handleUploadFormSubmit(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(uploadFormElement);
+            
+            if (!fileInput.files.length) {
+                alert('Please select a file to upload.');
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            
+            // Check file size (max 10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                alert('File size exceeds 10MB limit. Please choose a smaller file.');
+                return;
+            }
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const newSOP = {
+                    id: sops.length > 0 ? Math.max(...sops.map(sop => sop.id)) + 1 : 1,
+                    title: formData.get('upload-title'),
+                    purpose: "Refer to uploaded document for full SOP details.",
+                    procedure: "Refer to uploaded document for full procedure.",
+                    why: "Refer to uploaded document for justification.",
+                    category: formData.get('upload-category'),
+                    author: formData.get('upload-author'),
+                    date: new Date().toISOString().split('T')[0],
+                    type: 'file',
+                    fileName: file.name,
+                    fileContent: e.target.result,
+                    fileSize: (file.size / 1024 / 1024).toFixed(2) + ' MB'
+                };
+                
+                sops.push(newSOP);
+                renderSOPs();
+                
+                // Reset form
+                uploadFormElement.reset();
+                fileNameElement.textContent = '';
+                
+                // Show success message
+                alert('SOP uploaded successfully!');
+                
+                // Switch to view section
+                showSection('view');
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        // Event Listeners
+        uploadFormElement.addEventListener('submit', handleUploadFormSubmit);
+
+        closeDetailsButton.addEventListener('click', () => {
+            sopDetailsElement.style.display = 'none';
+        });
+
+        // Close details when clicking outside the content
+        sopDetailsElement.addEventListener('click', (e) => {
+            if (e.target === sopDetailsElement) {
+                sopDetailsElement.style.display = 'none';
+            }
+        });
+
+        // File upload area functionality
+        selectFileButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length) {
+                fileNameElement.textContent = `Selected file: ${fileInput.files[0].name}`;
+            }
+        });
+
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.backgroundColor = '#d9e6f7';
+        });
+
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.style.backgroundColor = '';
+        });
+
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.backgroundColor = '';
+            
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                fileNameElement.textContent = `Selected file: ${e.dataTransfer.files[0].name}`;
+            }
+        });
+
+        cancelUploadButton.addEventListener('click', () => {
+            showSection('home');
+        });
+
+        // Initialize the page
+        showSection('home');
+    </script>
+</body>
+</html>
